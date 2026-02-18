@@ -49,6 +49,9 @@ def load_data(filepath: Path) -> pd.DataFrame:
     Raises:
         FileNotFoundError: If the file does not exist at the specified path.
     """
+    if filepath == RAW_DATA_PATH and not filepath.exists():
+        logger.info(f"File not found at {filepath}. Attempting download...")
+        fetch_and_save_raw_data()
     try:
         data = pd.read_csv(filepath)
         return data

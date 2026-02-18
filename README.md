@@ -11,7 +11,7 @@ An interactive Machine Learning web application to predict penguin species based
 - [Key Features](#key-features)
 - [Project Structure](#project-structure)
 - [Prerequisites](#prerequisites)
-- [🚀 Quick Start (Docker)](#-quick-start-docker)
+- [Quick Start (Docker)](#-quick-start-docker)
 - [Local Development](#local-development)
 - [Model Information](#model-information)
 - [Troubleshooting](#troubleshooting)
@@ -70,7 +70,7 @@ To run the application in the recommended mode, you only need:
 
 ---
 
-## 🚀 Quick Start (Docker)
+## Quick Start (Docker)
 
 Pprovided are automated scripts to build and run the application in a container.
 

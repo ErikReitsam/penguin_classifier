@@ -9,7 +9,7 @@ import joblib
 import pandas as pd
 from loguru import logger
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import classification_report
+from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.model_selection import (
     GridSearchCV,
     StratifiedKFold,
@@ -139,6 +139,8 @@ def evaluate_model(
     preds = pipeline.predict(X=X_test)
 
     print("\n" + classification_report(y_true=y_test, y_pred=preds))
+
+    print(confusion_matrix(y_true=y_test, y_pred=preds))
 
     return classification_report(
         y_true=y_test,

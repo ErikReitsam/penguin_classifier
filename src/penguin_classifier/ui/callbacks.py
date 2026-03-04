@@ -147,12 +147,8 @@ def classify_penguin(
                     features=penguin_attributes
                 )
             except FileNotFoundError:
-                error_msg = (
-                    "No trained model found. Please run train.py."
-                )
-                logger.exception(
-                    "No trained Model found. Please run train.py"
-                )
+                error_msg = "No trained model found. Please run train.py."
+                logger.exception("No trained Model found. Please run train.py")
                 return (
                     error_msg,
                     True,

@@ -64,7 +64,11 @@ include = ["pyproject.toml", "src/**/*.py"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I"]
+ignore = ["E501"]
 
 [tool.ruff.lint.isort]
 known-first-party = ["penguin_classifier"]
 force-sort-within-sections = true
+
+[tool.mypy]
+ignore_missing_imports = true

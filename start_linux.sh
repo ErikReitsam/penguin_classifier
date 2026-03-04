@@ -13,12 +13,10 @@ fi
 
 # 2. Check if App is already running
 if [ "$(docker ps -q -f name=penguin-running)" ]; then
-  echo ""
-  echo "[WARNING] The application is already running!"
-  echo "Please check your open terminal windows or browser tabs."
-  echo "To restart, stop the existing process first."
-  echo ""
-  exit 1
+  echo "[INFO] The application is already running!"
+  echo "[INFO] Opening a new browser window..."
+  open "http://localhost:8050"
+  exit 0
 fi
 
 # 3. Build Image

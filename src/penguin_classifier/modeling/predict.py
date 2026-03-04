@@ -2,6 +2,8 @@
 Logic for loading the trained model and performing predictions.
 """
 
+from pathlib import Path
+
 import joblib
 import numpy as np
 import pandas as pd
@@ -10,7 +12,7 @@ from sklearn.pipeline import Pipeline
 from src.penguin_classifier.config import MODEL_PATH
 
 
-def _load_pipeline(path: str) -> Pipeline:
+def _load_pipeline(path: Path) -> Pipeline:
     """
     Loads a trained scikit-learn pipeline from a joblib file.
 

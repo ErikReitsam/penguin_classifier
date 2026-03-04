@@ -2,12 +2,13 @@
 Training module for the Penguin Classifier.
 Orchestrates data loading, preprocessing, model training, and evaluation.
 """
+
 import json
 import warnings
 
 import joblib
-import pandas as pd
 from loguru import logger
+import pandas as pd
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.model_selection import (
@@ -46,7 +47,7 @@ def build_pipeline() -> Pipeline:
     classifier = LogisticRegression(
         random_state=RANDOM_SEED,
         max_iter=1000,
-        solver="lbfgs"  # Explicit default
+        solver="lbfgs",  # Explicit default
     )
 
     return Pipeline(
@@ -57,7 +58,9 @@ def build_pipeline() -> Pipeline:
     )
 
 
-def load_and_split_data() -> tuple[pd.DataFrame, pd.DataFrame, pd.Series, pd.Series]:
+def load_and_split_data() -> tuple[
+    pd.DataFrame, pd.DataFrame, pd.Series, pd.Series
+]:
     """
     Loads raw data, cleans it, and performs a stratified train-test split.
 
@@ -98,11 +101,7 @@ def run_grid_search(
         "classifier__solver": ["lbfgs", "newton-cg"],
     }
 
-    cv = StratifiedKFold(
-        n_splits=5,
-        shuffle=True,
-        random_state=RANDOM_SEED
-    )
+    cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=RANDOM_SEED)
 
     grid_search = GridSearchCV(
         estimator=pipeline,
@@ -142,16 +141,10 @@ def evaluate_model(
 
     print(confusion_matrix(y_true=y_test, y_pred=preds))
 
-    return classification_report(
-        y_true=y_test,
-        y_pred=preds,
-        output_dict=True
-    )
+    return classification_report(y_true=y_test, y_pred=preds, output_dict=True)
 
 
-def save_artifacts(
-    pipeline: Pipeline, metrics: dict, cv_score: float
-) -> None:
+def save_artifacts(pipeline: Pipeline, metrics: dict, cv_score: float) -> None:
     """
     Saves the trained model and metrics to disk.
 
@@ -179,22 +172,17 @@ def train_model() -> None:
 
     # 2. Train (Grid Search)
     best_pipeline, best_cv_score = run_grid_search(
-        X_train=X_train,
-        y_train=y_train
+        X_train=X_train, y_train=y_train
     )
 
     # 3. Evaluate
     metrics = evaluate_model(
-        pipeline=best_pipeline,
-        X_test=X_test,
-        y_test=y_test
+        pipeline=best_pipeline, X_test=X_test, y_test=y_test
     )
 
     # 4. Save
     save_artifacts(
-        pipeline=best_pipeline,
-        metrics=metrics,
-        cv_score=best_cv_score
+        pipeline=best_pipeline, metrics=metrics, cv_score=best_cv_score
     )
 
 

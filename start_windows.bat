@@ -19,14 +19,10 @@ IF %ERRORLEVEL% NEQ 0 (
 REM 2. Check if App is ALREADY running
 docker ps -q -f name=penguin-running | findstr . >nul
 IF %ERRORLEVEL% EQU 0 (
-    color 0E
-    echo.
-    echo [WARNING] The application is already running!
-    echo.
-    echo Please check your open windows or browser tabs.
-    echo To restart, close the other black console window first.
-    echo.
-    pause
+    echo [INFO] The application is already running!
+    echo [INFO] Opening a new browser window...
+    start "" "http://localhost:8050"
+    REM end script here as app is already running
     exit /b
 )
 

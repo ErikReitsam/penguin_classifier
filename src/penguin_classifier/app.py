@@ -3,17 +3,16 @@ Main entry point for the Dash application.
 Configures the UI layout, initializes callbacks, and starts the web server.
 """
 
+import os
+from threading import Timer
+import webbrowser
+
 from dash import Dash
 import dash_bootstrap_components as dbc
-import os
-import webbrowser
-from threading import Timer
-
-from src.penguin_classifier.ui.layout import create_layout
 
 # Import callbacks to ensure they are registered with the Dash app
 # noinspection PyUnusedImports
-import src.penguin_classifier.ui.callbacks
+from src.penguin_classifier.ui.layout import create_layout
 
 
 def open_browser():

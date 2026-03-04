@@ -12,7 +12,7 @@ def create_scatter_plot(
     df_historic: pd.DataFrame,
     x_column: str = "flipper_length_mm",
     y_column: str = "bill_length_mm",
-    size_column: str = None,
+    size_column: str | None = None,
     new_data: pd.DataFrame = None,
 ) -> go.Figure:
     """

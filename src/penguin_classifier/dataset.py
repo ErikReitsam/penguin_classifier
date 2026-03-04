@@ -4,6 +4,7 @@ Handles both the initial dataset and the history of user predictions.
 """
 
 from pathlib import Path
+
 from loguru import logger
 import pandas as pd
 

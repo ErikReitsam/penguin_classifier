@@ -1,4 +1,4 @@
-FROM python:3.10-slim
+FROM python:3.11-slim
 
 LABEL maintainer="Erik Reitsam"
 LABEL description="Penguin Classifier App (Poetry)"

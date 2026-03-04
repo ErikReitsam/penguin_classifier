@@ -3,6 +3,8 @@ Defines the visual structure of the Dash application.
 Uses Dash Bootstrap Components (dbc) to create a responsive dashboard layout.
 """
 
+# flake8: noqa: E501
+
 import json
 from typing import Literal
 
@@ -117,7 +119,7 @@ def _create_performance_card() -> dbc.Card:
         content = [
             html.H5(children="Model Performance", className="card-title"),
             dbc.Alert(
-                children="No metrics found. Please ensure the model is trained.",
+                children="No metrics found. Please run train.py first.",
                 color="warning",
             ),
         ]
@@ -298,7 +300,7 @@ def create_layout() -> dbc.Container:
                                                         dbc.Alert(
                                                             id="classification_result",
                                                             is_open=False,
-                                                            dismissable=True,
+                                                            dismissable=False,
                                                             color="info",
                                                             className="text-center fw-bold m-0",
                                                         )

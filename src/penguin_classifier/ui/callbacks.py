@@ -8,7 +8,6 @@ import dash_bootstrap_components as dbc
 from loguru import logger
 import pandas as pd
 
-from src.penguin_classifier.config import FEATURE_CONSTRAINTS
 from src.penguin_classifier.dataset import load_combined_data, save_prediction
 from src.penguin_classifier.modeling.predict import (
     predict_single_penguin_proba,
@@ -125,7 +124,7 @@ def classify_penguin(
         }
         for feature_name, value in inputs_to_validate.items():
             if value is None or value == "":
-                logger.warning(f"Missing value for {feature_name}")
+                logger.warning(f"Missing or invalid value for {feature_name}")
                 msg = f"Please enter a valid value for '{feature_name}'."
                 return msg, True, "danger", no_update, no_update, no_update
 
@@ -143,9 +142,26 @@ def classify_penguin(
             )
 
             # Execute prediction
-            species, proba = predict_single_penguin_proba(
-                features=penguin_attributes
-            )
+            try:
+                species, proba = predict_single_penguin_proba(
+                    features=penguin_attributes
+                )
+            except FileNotFoundError:
+                error_msg = (
+                    "No trained model found. Please run train.py."
+                )
+                logger.exception(
+                    "No trained Model found. Please run train.py"
+                )
+                return (
+                    error_msg,
+                    True,
+                    "danger",
+                    no_update,
+                    no_update,
+                    no_update,
+                )
+
             msg = (
                 f"Species: {species} --- Confidence: {round(proba * 100, 2)}%"
             )

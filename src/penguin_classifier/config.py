@@ -1,10 +1,10 @@
 """
 Central configuration module.
-Defines file paths, model hyperparameters, UI constants, and validation constraints.
+Defines file paths, model hyperparameters, UI constants, and validation
+constraints.
 """
 
 from pathlib import Path
-
 
 # --- Path Definitions ---
 PROJ_ROOT = Path(__file__).resolve().parents[2]
@@ -16,8 +16,8 @@ PROCESSED_DATA_PATH = DATA_DIR / "processed" / "prediction_history.csv"
 
 MODEL_PATH = PROJ_ROOT / "models" / "pipeline.joblib"
 REPORTS_DIR = PROJ_ROOT / "reports"
-FIGURES_DIR = REPORTS_DIR / "figures"
-METRICS_PATH = REPORTS_DIR / "metrics.json"
+METRICS_DIR = PROJ_ROOT / "metrics"
+METRICS_PATH = METRICS_DIR / "metrics.json"
 
 # --- ML Constants ---
 RANDOM_SEED = 42

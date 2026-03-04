@@ -12,6 +12,7 @@ import dash_bootstrap_components as dbc
 
 # Import callbacks to ensure they are registered with the Dash app
 # noinspection PyUnusedImports
+from src.penguin_classifier.ui import callbacks  # noqa: F401
 from src.penguin_classifier.ui.layout import create_layout
 
 

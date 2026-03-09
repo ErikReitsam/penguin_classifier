@@ -1,4 +1,4 @@
-# 🐧 Penguin Species Classifier
+# Penguin Species Classifier
 
 An interactive Machine Learning web application to predict penguin species based on physical characteristics. Built with **Python**, **Dash**, **Scikit-Learn**, and **Docker**.
 
@@ -6,7 +6,7 @@ An interactive Machine Learning web application to predict penguin species based
 ![Docker](https://img.shields.io/badge/Docker-Enabled-blue)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
-## 📋 Table of Contents
+## Table of Contents
 - [Overview](#overview)
 - [Key Features](#key-features)
 - [Project Structure](#project-structure)
@@ -42,6 +42,7 @@ This project follows the **Cookiecutter Data Science** standard:
 ├── .pre-commit-config.yaml     # Configuration for automated code quality checks
 ├── Dockerfile                  # Instructions to build the containerized app
 ├── LICENSE                     # Open-source license (e.g., MIT)
+├── Makefile                    # Task runner for common commands (e.g., test, build)
 ├── poetry.lock                 # Locked dependencies for guaranteed reproducibility
 ├── pyproject.toml              # Modern Python project configuration and dependencies
 ├── start_app_windows.bat       # One-click Launcher for Windows
@@ -62,7 +63,6 @@ This project follows the **Cookiecutter Data Science** standard:
         ├── modeling/           # ML training, evaluation, and inference logic
         └── ui/                 # Dash layout components and interactive callbacks
 └── tests/                      # Tests (Pytest for frontend & backend)
-
 ```
 
 ---

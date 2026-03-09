@@ -8,6 +8,7 @@ import dash_bootstrap_components as dbc
 from loguru import logger
 import pandas as pd
 
+from src.penguin_classifier.config import FEATURE_CONSTRAINTS
 from src.penguin_classifier.dataset import load_combined_data, save_prediction
 from src.penguin_classifier.modeling.predict import (
     predict_single_penguin_proba,
@@ -115,7 +116,7 @@ def classify_penguin(
             msg = "Please select an island."
             return msg, True, "danger", no_update, no_update, no_update
 
-        # Validate Numerical Inputs
+        # Validate Numerical Inputs (client-side via dbc.Input)
         inputs_to_validate = {
             "bill_length_mm": bill_length_mm,
             "bill_depth_mm": bill_depth_mm,
@@ -123,10 +124,20 @@ def classify_penguin(
             "body_mass_g": body_mass_g,
         }
         for feature_name, value in inputs_to_validate.items():
+            msg = f"Please enter a valid value for '{feature_name}'."
             if value is None or value == "":
                 logger.warning(f"Missing or invalid value for {feature_name}")
-                msg = f"Please enter a valid value for '{feature_name}'."
+
                 return msg, True, "danger", no_update, no_update, no_update
+
+            # Server-Side validation
+            constraints = FEATURE_CONSTRAINTS.get(feature_name)
+            if constraints:
+                if value < constraints["min"] or value > constraints["max"]:
+                    logger.warning(
+                        f"Validation failed for {feature_name}: {value}"
+                    )
+                    return msg, True, "danger", no_update, no_update, no_update
 
         try:
             # Prepare data for prediction

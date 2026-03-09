@@ -42,7 +42,7 @@ def test_callback_missing_island(mock_ctx):
 
     assert is_open is True
     assert color == "danger"
-    assert "Please enter island." in text
+    assert "Please select an island." in text
 
 
 @patch("src.penguin_classifier.ui.callbacks.ctx")
@@ -60,7 +60,7 @@ def test_callback_invalid_number(mock_ctx):
 
     assert is_open is True
     assert color == "danger"
-    assert "Please enter allowed value for" in text
+    assert "Please enter a valid value for" in text
     assert "bill_length_mm" in text
 
 

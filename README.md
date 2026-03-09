@@ -39,23 +39,30 @@ Users can input physical measurements (bill length, flipper length, etc.) to get
 This project follows the **Cookiecutter Data Science** standard:
 
 ```text
-├── Dockerfile                  # Instructions to build the container
-├── start_app_windows.bat       # One-click launcher for Windows
-├── start_app_linux.sh          # Launcher for Mac/Linux
-├── data/                       # Local data storage
-│   ├── raw/                    # Original dataset (read-only)
-│   └── processed/              # User prediction history (append-only)
+├── .pre-commit-config.yaml     # Configuration for automated code quality checks
+├── Dockerfile                  # Instructions to build the containerized app
+├── LICENSE                     # Open-source license (e.g., MIT)
+├── poetry.lock                 # Locked dependencies for guaranteed reproducibility
+├── pyproject.toml              # Modern Python project configuration and dependencies
+├── start_app_windows.bat       # One-click Launcher for Windows
+├── start_app_linux.sh          # One-click Launcher for Mac/Linux
+├── data/                       # Local data storage (raw and user-processed)
+├── docs/                       # Extended project documentation (MkDocs ready)
+├── metrics/                    # Model performance metrics
 ├── models/                     # Serialized model artifacts (pipeline.joblib)
 ├── notebooks/                  # Jupyter notebooks for EDA
-├── reports/                    # Generated metrics and figures
-└── src/                        # Source code
+├── reports/                    # Generated evaluation metrics and figures
+└── src/                        # Main application source code
     └── penguin_classifier/
         ├── app.py              # Application entry point
         ├── config.py           # Configuration & constants
         ├── dataset.py          # Data loading & persistence logic
-        ├── features.py         # Feature engineering (pipelines)
+        ├── features.py         # Feature engineering
         ├── plots.py            # Visualization logic
-        └── modeling/           # Training and prediction logic
+        ├── modeling/           # ML training, evaluation, and inference logic
+        └── ui/                 # Dash layout components and interactive callbacks
+└── tests/                      # Tests (Pytest for frontend & backend)
+
 ```
 
 ---

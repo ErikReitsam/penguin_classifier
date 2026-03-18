@@ -153,7 +153,7 @@ def _create_input(
         placeholder=PLACEHOLDERS[label],
         min=FEATURE_CONSTRAINTS[label]["min"],
         max=FEATURE_CONSTRAINTS[label]["max"],
-        value=FEATURE_CONSTRAINTS[label]["default"],
+        # value=FEATURE_CONSTRAINTS[label]["default"], # uncomment to use default-values
     )
 
 

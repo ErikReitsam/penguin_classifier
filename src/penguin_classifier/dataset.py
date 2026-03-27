@@ -103,6 +103,9 @@ def save_prediction(new_data: pd.DataFrame = None):
 
     # Ensure columns are in the correct order before saving
     new_data_ordered = new_data[CSV_HEADER]
+
+    PROCESSED_DATA_PATH.parent.mkdir(parents=True, exist_ok=True)
+
     new_data_ordered.to_csv(
         PROCESSED_DATA_PATH, mode="a", header=not file_exists, index=False
     )

@@ -79,11 +79,11 @@ To run the application in the recommended mode, you only need:
 
 ## Quick Start (Docker)
 
-Pprovided are automated scripts to build and run the application in a container.
+Provided are automated scripts to build and run the application in a container.
 
 ### For Windows Users
 1.  Ensure Docker Desktop is running.
-2.  Double-click the file **`start_app_windows.bat`**.
+2.  Double-click the file **`start_windows.bat`**.
 3.  A console window will open, build the image, and automatically launch your default browser at `http://localhost:8050`.
 
 ### For Mac / Linux Users
@@ -91,7 +91,7 @@ Pprovided are automated scripts to build and run the application in a container.
 2.  Navigate to the project folder.
 3.  Make the script executable (only needed once):
     ```bash
-    chmod +x start_app_linux.sh
+    chmod +x start_linux.sh
     ```
 4.  Run the script:
     ```bash

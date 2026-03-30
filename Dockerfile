@@ -1,49 +1,40 @@
-# ==========================================
-# STAGE 1: Builder (Heavy, contains compilers)
-# ==========================================
-FROM python:3.11-slim as builder
+FROM python:3.11-slim AS builder
 
 ENV POETRY_VERSION=2.0.1 \
     POETRY_HOME="/opt/poetry" \
-    # Erstellt .venv direkt im Projekt für sauberen Transfer zu Stage 2
     POETRY_VIRTUALENVS_IN_PROJECT=true \
-    POETRY_NO_INTERACTION=1
+    POETRY_NO_INTERACTION=1 \
+    PATH="/opt/poetry/bin:$PATH"
 
-ENV PATH="$POETRY_HOME/bin:$PATH"
-
-# Install compilers & Poetry
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-       curl \
-       build-essential \
-       cmake \
-    && curl -sSL https://install.python-poetry.org | python3 -
+        curl \
+        build-essential \
+        cmake \
+    && curl -sSL https://install.python-poetry.org | python3 - \
+    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 COPY pyproject.toml poetry.lock ./
+RUN poetry install --without dev,eda --no-root
 
-# Install dependencies (inkl. phik Compilation) into /app/.venv
-RUN poetry install --without dev --no-root
-
-# ==========================================
-# STAGE 2: Production (Minimal & Secure)
-# ==========================================
 FROM python:3.11-slim
-
-LABEL maintainer="Erik Reitsam"
-LABEL description="Penguin Classifier App (Poetry)"
 
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
     PATH="/app/.venv/bin:$PATH" \
-    PYTHONPATH="/app/src"
+    PYTHONPATH="/app/src" \
+    TMPDIR="/tmp"
+
+RUN useradd -m appuser
 
 WORKDIR /app
 
-COPY --from=builder /app/.venv /app/.venv
+COPY --from=builder --chown=appuser:appuser /app/.venv /app/.venv
+COPY --chown=appuser:appuser src ./src
 
-COPY . .
+USER appuser
 
 EXPOSE 8050
 
-CMD ["gunicorn", "--bind", "0.0.0.0:8050", "src.penguin_classifier.app:server"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8050", "penguin_classifier.app:server"]

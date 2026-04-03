@@ -42,13 +42,11 @@ This project follows the **Cookiecutter Data Science** standard:
 ├── .pre-commit-config.yaml     # Configuration for automated code quality checks
 ├── Dockerfile                  # Instructions to build the containerized app
 ├── LICENSE                     # Open-source license (e.g., MIT)
-├── Makefile                    # Task runner for common commands (e.g., test, build)
 ├── poetry.lock                 # Locked dependencies for guaranteed reproducibility
 ├── pyproject.toml              # Modern Python project configuration and dependencies
-├── start_app_windows.bat       # One-click Launcher for Windows
-├── start_app_linux.sh          # One-click Launcher for Mac/Linux
+├── start_windows.bat       # One-click Launcher for Windows
+├── start_mac_linux.sh          # One-click Launcher for Mac / Linux
 ├── data/                       # Local data storage (raw and user-processed)
-├── docs/                       # Extended project documentation (MkDocs ready)
 ├── metrics/                    # Model performance metrics
 ├── models/                     # Serialized model artifacts (pipeline.joblib)
 ├── notebooks/                  # Jupyter notebooks for EDA
@@ -91,11 +89,11 @@ Provided are automated scripts to build and run the application in a container.
 2.  Navigate to the project folder.
 3.  Make the script executable (only needed once):
     ```bash
-    chmod +x start_linux.sh
+    chmod +x start_mac_linux.sh
     ```
 4.  Run the script:
     ```bash
-    ./start_linux.sh
+    ./start_mac_linux.sh
     ```
 
 **Stopping the App:**
@@ -105,7 +103,7 @@ Simply close the terminal window or press `CTRL + C`. The container will automat
 
 ## Local Development
 
-If you wish to develop or run the code without Docker, you need **Python 3.10+** and **Poetry** (or pip).
+If you wish to develop or run the code without Docker, you need **Python 3.11+** and **Poetry** (or pip).
 
 1.  **Install Dependencies:**
     ```bash
@@ -121,7 +119,7 @@ If you wish to develop or run the code without Docker, you need **Python 3.10+**
     ```bash
     python -m src.penguin_classifier.modeling.train
     ```
-    This updates `models/pipeline.joblib` and `reports/metrics.json`.
+    This updates `models/pipeline.joblib` and `metrics/metrics.json`.
 
 3.  **Run the App:**
     ```bash

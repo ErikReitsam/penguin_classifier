@@ -72,11 +72,11 @@ def clean_data(df: pd.DataFrame) -> pd.DataFrame:
     """
     df = df.dropna(subset=NUMERICAL_FEATURES + ["species"], axis="rows")
     return df.drop(
-        columns=["year"],
+        columns=["year"], errors="ignore",
     )
 
 
-def split_feature_from_target(df: pd.DataFrame) -> tuple[pd.DataFrame, list]:
+def split_feature_from_target(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.Series]:
     """
     Separates the target labels from the input features.
 

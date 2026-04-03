@@ -6,6 +6,19 @@ echo "========================================================"
 echo "  PENGUIN CLASSIFIER APP - LAUNCHER"
 echo "========================================================"
 
+# --- Helper: Cross-platform browser open ---
+open_browser() {
+  local url="$1"
+  if command -v xdg-open > /dev/null 2>&1; then
+    xdg-open "$url"          # Linux (Desktop-Umgebung)
+  elif command -v open > /dev/null 2>&1; then
+    open "$url"              # macOS
+  else
+    echo "[INFO] Could not open browser automatically."
+    echo "[INFO] Please open $url manually."
+  fi
+}
+
 # 1. Check if Docker is running
 if ! docker info > /dev/null 2>&1; then
   echo "[ERROR] Docker is not running. Please start Docker Desktop."
@@ -16,7 +29,7 @@ fi
 if [ "$(docker ps -q -f name=penguin-running)" ]; then
   echo "[INFO] The application is already running!"
   echo "[INFO] Opening browser..."
-  open "http://localhost:8050"
+  open_browser "http://localhost:8050"
   echo ""
   echo "========================================================"
   echo "  App is running at http://localhost:8050"
@@ -40,7 +53,7 @@ fi
 (
   for i in {1..60}; do
     if curl -s http://localhost:8050 > /dev/null 2>&1; then
-      open "http://localhost:8050"
+      open_browser "http://localhost:8050"
       break
     fi
     sleep 2

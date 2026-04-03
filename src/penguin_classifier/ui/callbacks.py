@@ -15,9 +15,6 @@ from src.penguin_classifier.modeling.predict import (
 )
 from src.penguin_classifier.plots import create_scatter_plot
 
-# Load initial dataset for session start
-prediction_history = load_combined_data()
-
 
 @callback(
     Output(

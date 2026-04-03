@@ -95,7 +95,7 @@ Provided are automated scripts to build and run the application in a container.
     ```
 4.  Run the script:
     ```bash
-    ./start_app_linux.sh
+    ./start_linux.sh
     ```
 
 **Stopping the App:**

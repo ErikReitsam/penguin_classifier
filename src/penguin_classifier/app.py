@@ -36,4 +36,4 @@ if __name__ == "__main__":
     if os.environ.get("WERKZEUG_RUN_MAIN") is None:
         Timer(interval=2, function=open_browser).start()
 
-    app.run(debug=True, port=8050)
+    app.run(debug=False, port=8050)

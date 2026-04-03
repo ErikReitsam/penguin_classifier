@@ -287,7 +287,7 @@ def create_layout() -> dbc.Container:
                                     dbc.Col(
                                         [
                                             html.H3(
-                                                children="Penguin Classifier",
+                                                children="Penguin Species Classifier",
                                                 className="mb-3",
                                             ),
                                             dbc.Card(

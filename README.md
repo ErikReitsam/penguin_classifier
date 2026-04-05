@@ -39,12 +39,11 @@ Users can input physical measurements (bill length, flipper length, etc.) to get
 This project follows the **Cookiecutter Data Science** standard:
 
 ```text
-├── .pre-commit-config.yaml     # Configuration for automated code quality checks
 ├── Dockerfile                  # Instructions to build the containerized app
 ├── LICENSE                     # Open-source license (e.g., MIT)
 ├── poetry.lock                 # Locked dependencies for guaranteed reproducibility
 ├── pyproject.toml              # Modern Python project configuration and dependencies
-├── start_windows.bat       # One-click Launcher for Windows
+├── start_windows.bat           # One-click Launcher for Windows
 ├── start_mac_linux.sh          # One-click Launcher for Mac / Linux
 ├── data/                       # Local data storage (raw and user-processed)
 ├── metrics/                    # Model performance metrics
@@ -136,7 +135,7 @@ The classification model is a **Logistic Regression** pipeline optimized via 5-f
     * *Numerical Features:* Scaled using `StandardScaler`.
     * *Categorical Features:* Encoded using `OneHotEncoder`.
 * **Performance:**
-    * Metrics (Accuracy, F1-Score, Precision, Recall) are automatically tracked in `reports/metrics.json` after every training run.
+    * Metrics (Accuracy, F1-Score, Precision, Recall) are automatically tracked in `metrics/metrics.json` after every training run.
     * Current Test Accuracy: **>98%** (depending on the random seed).
 
 ---
@@ -149,3 +148,9 @@ The classification model is a **Logistic Regression** pipeline optimized via 5-f
 
 **Problem: Docker script closes immediately**
 * **Solution:** Open Docker Desktop and ensure the engine is running.
+
+**Problem: After doubleclick start_mac_linux.sh: access denied**
+* **Solution:** Make the script executable (only needed once):
+    ```bash
+    chmod +x start_mac_linux.sh
+    ```
